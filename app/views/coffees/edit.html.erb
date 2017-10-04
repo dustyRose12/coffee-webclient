@@ -1,0 +1,18 @@
+<h1>Edit a Coffee</h1>
+<%=form_tag "/coffees/#{params[:id]}", method: :patch do %>
+  <div>
+    Blend: <input type="text" name="blend">
+  </div>
+
+   <div>
+    Origin: <input type="text" name="origin">
+  </div> 
+  <div>
+    Variety: <input type="text" name="variety">
+  </div>
+   <div>
+    Notes: <input type="text" name="notes">
+  </div>
+  <input type="submit" value="Edit Coffee">
+  <div>
+<% end %>
