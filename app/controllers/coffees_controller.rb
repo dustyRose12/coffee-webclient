@@ -1,11 +1,13 @@
 class CoffeesController < ApplicationController
 
+    #TODO: clean up the create, update and destroy methods by putting them into the coffee model
+    
     def index
-      @coffees = Unirest.get("#{ ENV['HOST_NAME'] }/api/v2/coffees.json").body
+      @coffees = Coffee.all
     end
 
     def show
-    @coffee = Unirest.get("#{ ENV['HOST_NAME'] }/api/v2/coffees/#{params[:id]}.json").body
+    @coffee = Coffee.find(params[:id])
    end
 
    def create
@@ -31,7 +33,8 @@ class CoffeesController < ApplicationController
   end
 
   def destroy
-      coffee = Unirest.delete("#{ ENV['HOST_NAME'] }/api/v2/coffees/#{params[:id]}.json").body
+      # coffee = Unirest.delete("#{ ENV['HOST_NAME'] }/api/v2/coffees/#{params[:id]}.json").body
+      coffee = Coffee.destroy(params[:id])
 
       flash[:warning] = "Coffee Successfully Destroyed"
       redirect_to "/coffees"
